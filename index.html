@@ -11,12 +11,11 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('logoblox.jpg'); /* Assuming the image is named logoblox.jpg */
-            background-size: cover;
-            background-position: center;
+            background-color: blue; /* Background of the login page is blue */
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: darkblue; /* Container for username and password is dark blue */
+            color: white; /* Text color is white for better visibility against dark blue */
             padding: 20px;
             border-radius: 5px;
             width: 300px;
@@ -27,6 +26,27 @@
         }
         .message {
             display: none;
+            background-color: rgba(255, 255, 255, 0.8); /* Background for the logged-in message */
+            color: black; /* Text color for the logged-in message */
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
