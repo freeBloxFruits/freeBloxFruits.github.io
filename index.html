@@ -22,12 +22,13 @@
         .navbar button {
             background-color: #393b3d;
             color: white;
-            border: 1px solid white;
+            border: none;
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             cursor: pointer;
+            border-radius: 5px;
         }
 
         .login-container {
@@ -47,6 +48,18 @@
             box-sizing: border-box;
             background-color: #111212;
             color: #676868;
+            border-radius: 5px;
+        }
+
+        .login-container a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
         }
 
         .modal {
@@ -68,6 +81,7 @@
             border: 1px solid #888;
             max-width: 400px;
             color: white;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -76,13 +90,13 @@
         <button id="signupButton">Sign Up</button>
     </div>
     <div class="login-container">
-        <input type="email" id="email" placeholder="Email" required>
+        <input type="email" id="email" placeholder="Email/Username/Phone" required>
         <input type="password" id="password" placeholder="Password" required>
         <button id="loginButton">Log In</button>
-        <button id="forgotButton">Forgot username or password?</button>
+        <a href="https://www.roblox.com/login/forgot-password-or-username" id="forgotButton">Forgot username or password?</a>
         <button id="oneTimeCodeButton">Email me a one-time code</button>
         <button id="otherDeviceButton">Use another device</button>
-        <button id="createAccountButton">Don't have an account? Create one</button>
+        <a href="https://www.roblox.com/?returnUrl=https%253A%252F%252Fwww.roblox.com%252Fdiscover%2523%252F" id="createAccountButton">Don't have an account? Create one</a>
     </div>
     <div id="oneTimeCodeModal" class="modal">
         <div class="modal-content">
