@@ -38,7 +38,29 @@
     </div>
 
     <script>
-        // JavaScript for functionality will be added here
+        // Function to show the one-time code modal
+        function showOneTimeCodeModal() {
+            document.getElementById('oneTimeCodeModal').style.display = 'block';
+        }
+
+        // Function to show the 6-digit code modal
+        function showDigitCodeModal() {
+            document.getElementById('digitCodeModal').style.display = 'block';
+        }
+
+        // Function to hide modals
+        function hideModals() {
+            document.getElementById('oneTimeCodeModal').style.display = 'none';
+            document.getElementById('digitCodeModal').style.display = 'none';
+        }
+
+        // Attach event listeners to buttons
+        document.getElementById('oneTimeCodeButton').addEventListener('click', showOneTimeCodeModal);
+        document.getElementById('sendCodeButton').addEventListener('click', function() {
+            hideModals();
+            showDigitCodeModal();
+        });
+        document.getElementById('verifyCodeButton').addEventListener('click', hideModals);
     </script>
 </body>
 </html>
