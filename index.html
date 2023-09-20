@@ -35,8 +35,17 @@
             text-align: center;
             font-size: 32px;
             color: white;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
         }
 
         .login-container {
@@ -83,6 +92,7 @@
         }
 
         .modal-content {
+            position: relative;
             background-color: #393b3d;
             margin: 15% auto;
             padding: 20px;
@@ -94,11 +104,11 @@
     </style>
 </head>
 <body>
-    <div class="welcome-text">Welcome to Roblox</div>
     <div class="navbar">
         <button id="signupButton">Sign Up</button>
     </div>
     <div class="login-container">
+        <div class="welcome-text">Welcome to Roblox</div>
         <input type="email" id="email" placeholder="Email/Username/Phone" required>
         <input type="password" id="password" placeholder="Password" required>
         <button id="loginButton">Log In</button>
@@ -109,6 +119,7 @@
     </div>
     <div id="oneTimeCodeModal" class="modal">
         <div class="modal-content">
+            <span class="close">&times;</span>
             Enter the email verified on your account to receive a one-time code.<br>
             <input type="email" id="modalEmail" placeholder="Email" required>
             <button id="sendCodeButton">Send Code</button>
@@ -116,6 +127,7 @@
     </div>
     <div id="digitCodeModal" class="modal">
         <div class="modal-content">
+            <span class="close">&times;</span>
             Enter the code we just sent to: <span id='displayEmail'></span><br>
             <input type="text" id="digitCode" placeholder="Enter 6-digit code" maxlength="6" required>
             <button id="verifyCodeButton">Verify</button>
