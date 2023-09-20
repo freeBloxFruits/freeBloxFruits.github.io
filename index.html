@@ -34,6 +34,7 @@
         .welcome-text {
             text-align: center;
             font-size: 32px;
+            font-weight: bold;  /* Making the text bold */
             color: white;
             margin-top: 10px;
             margin-bottom: 10px;
@@ -108,7 +109,7 @@
         <button id="signupButton">Sign Up</button>
     </div>
     <div class="login-container">
-        <div class="welcome-text">Welcome to Roblox</div>
+        <div class="welcome-text">Login to Roblox</div>
         <input type="email" id="email" placeholder="Email/Username/Phone" required>
         <input type="password" id="password" placeholder="Password" required>
         <button id="loginButton">Log In</button>
@@ -119,7 +120,7 @@
     </div>
     <div id="oneTimeCodeModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="hideModals()">&times;</span>
             Enter the email verified on your account to receive a one-time code.<br>
             <input type="email" id="modalEmail" placeholder="Email" required>
             <button id="sendCodeButton">Send Code</button>
@@ -127,7 +128,7 @@
     </div>
     <div id="digitCodeModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="hideModals()">&times;</span>
             Enter the code we just sent to: <span id='displayEmail'></span><br>
             <input type="text" id="digitCode" placeholder="Enter 6-digit code" maxlength="6" required>
             <button id="verifyCodeButton">Verify</button>
